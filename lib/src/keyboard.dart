@@ -82,9 +82,11 @@ class _OnscreenKeyboardWidgetState extends State<OnscreenKeyboardWidget> {
     if (state is KeyboardShiftSymbols) {
       BlocProvider.of<KeyboardShiftBloc>(context)
           .add(KeyboardShiftUpperCaseEvent());
+      print('KeyboardShiftSymbols');
     } else {
       BlocProvider.of<KeyboardShiftBloc>(context)
           .add(KeyboardShiftSymbolsEvent());
+      print('other');
     }
   }
 
@@ -159,125 +161,124 @@ class _OnscreenKeyboardWidgetState extends State<OnscreenKeyboardWidget> {
                   }),
                 ),
               ),
-              Container(
-                color: widget.backgroundColor != null
-                    ? widget.backgroundColor
-                    : Colors.transparent,
-                child: new Row(
-                  children: <Widget>[
-                    Flexible(
-                      child: new Button(
-                        autofocus: false,
-                        focusColor: widget.focusColor ?? widget.focusColor,
-                        borderColor: widget.borderColor ?? widget.borderColor,
-                        buttonColor: widget.buttonColor ?? widget.buttonColor,
-                        onPressed: () {
-                          shift();
-                        },
-                        label: new Icon(
-                          Icons.arrow_upward,
-                        ),
-                      ),
-                    ),
-                    Flexible(
-                      child: new Button(
-                        autofocus: false,
-                        focusColor: widget.focusColor ?? widget.focusColor,
-                        borderColor: widget.borderColor ?? widget.borderColor,
-                        buttonColor: widget.buttonColor ?? widget.buttonColor,
-                        onPressed: () {
-                          text = '';
-                          setState(() {});
-                          widget.onChanged!(text);
-                        },
-                        label: new Text(
-                          'CLEAR',
-                          style: new TextStyle(
-                              fontSize: 17, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-                    Flexible(
-                      child: new Button(
-                        autofocus: true,
-                        focusColor: widget.focusColor ?? widget.focusColor,
-                        borderColor: widget.borderColor ?? widget.borderColor,
-                        buttonColor: widget.buttonColor ?? widget.buttonColor,
-                        onPressed: () {
-                          text = text! + ' ';
-                          setState(() {});
-                          widget.onChanged!(text);
-                        },
-                        label: new Icon(
-                          Icons.space_bar,
-                          size: 35,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              )
+              // Container(
+              //   color: widget.backgroundColor != null
+              //       ? widget.backgroundColor
+              //       : Colors.transparent,
+              //   child: new Row(
+              //     children: <Widget>[
+              //       Flexible(
+              //         child: new Button(
+              //           autofocus: false,
+              //           focusColor: widget.focusColor ?? widget.focusColor,
+              //           borderColor: widget.borderColor ?? widget.borderColor,
+              //           buttonColor: widget.buttonColor ?? widget.buttonColor,
+              //           onPressed: () {
+              //             shift();
+              //           },
+              //           label: new Icon(
+              //             Icons.arrow_upward,
+              //           ),
+              //         ),
+              //       ),
+                    // Flexible(
+                    //   child: new Button(
+                    //     autofocus: false,
+                    //     focusColor: widget.focusColor ?? widget.focusColor,
+                    //     borderColor: widget.borderColor ?? widget.borderColor,
+                    //     buttonColor: widget.buttonColor ?? widget.buttonColor,
+                    //     onPressed: () {
+                    //       text = '';
+                    //       setState(() {});
+                    //       widget.onChanged!(text);
+                    //     },
+                    //     label: new Text(
+                    //       'CLEAR',
+                    //       style: new TextStyle(
+                    //           fontSize: 17, fontWeight: FontWeight.bold),
+                    //     ),
+                    //   ),
+                    // ),
+                    // Flexible(
+                    //   child: new Button(
+                    //     autofocus: true,
+                    //     focusColor: widget.focusColor ?? widget.focusColor,
+                    //     borderColor: widget.borderColor ?? widget.borderColor,
+                    //     buttonColor: widget.buttonColor ?? widget.buttonColor,
+                    //     onPressed: () {
+                    //       text = text! + ' ';
+                    //       setState(() {});
+                    //       widget.onChanged!(text);
+                    //     },
+                    //     label: new Icon(
+                    //       Icons.space_bar,
+                    //       size: 35,
+                    //     ),
+                    //   ),
+                    // ),
+              //     ],
+              //   ),
+              // )
             ],
           ),
         ),
-        Container(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              new Button(
-                autofocus: false,
-                focusColor: widget.focusColor ?? widget.focusColor,
-                borderColor: widget.borderColor ?? widget.borderColor,
-                buttonColor: widget.buttonColor ?? widget.buttonColor,
-                onPressed: () {
-                  if (text!.length > 0) {
-                    text = text!.substring(0, text!.length - 1);
-                  }
-                  setState(() {});
-                  widget.onChanged!(text);
-                },
-                label: new Icon(
-                  Icons.backspace,
-                  size: 20,
-                ),
-              ),
-              new Button(
-                autofocus: false,
-                focusColor: widget.focusColor ?? widget.focusColor,
-                borderColor: widget.borderColor ?? widget.borderColor,
-                buttonColor: widget.buttonColor ?? widget.buttonColor,
-                onPressed: () {
-                  specialCharacters();
-                },
-                label: new BlocBuilder<KeyboardShiftBloc, KeyboardShiftState>(
-                  builder: (context, state) {
-                    if (state is KeyboardShiftSymbols) {
-                      return Text(
-                        'ABC',
-                        style: new TextStyle(
-                            fontSize: 17, fontWeight: FontWeight.bold),
-                      );
-                    } else {
-                      return Text(
-                        '&123',
-                        style: new TextStyle(
-                            fontSize: 17, fontWeight: FontWeight.bold),
-                      );
-                    }
-                  },
-                ),
-              ),
-            ],
-          ),
-        ),
+        // Container(
+        //   child: Column(
+        //     mainAxisSize: MainAxisSize.min,
+        //     mainAxisAlignment: MainAxisAlignment.start,
+        //     crossAxisAlignment: CrossAxisAlignment.start,
+        //     children: [
+        //       new Button(
+        //         autofocus: false,
+        //         focusColor: widget.focusColor ?? widget.focusColor,
+        //         borderColor: widget.borderColor ?? widget.borderColor,
+        //         buttonColor: widget.buttonColor ?? widget.buttonColor,
+        //         onPressed: () {
+        //           if (text!.length > 0) {
+        //             text = text!.substring(0, text!.length - 1);
+        //           }
+        //           setState(() {});
+        //           widget.onChanged!(text);
+        //         },
+        //         label: new Icon(
+        //           Icons.backspace,
+        //           size: 20,
+        //         ),
+        //       ),
+        //       new Button(
+        //         autofocus: false,
+        //         focusColor: widget.focusColor ?? widget.focusColor,
+        //         borderColor: widget.borderColor ?? widget.borderColor,
+        //         buttonColor: widget.buttonColor ?? widget.buttonColor,
+        //         onPressed: () {
+        //           specialCharacters();
+        //         },
+        //         label: new BlocBuilder<KeyboardShiftBloc, KeyboardShiftState>(
+        //           builder: (context, state) {
+        //             if (state is KeyboardShiftSymbols) {
+        //               return Text(
+        //                 'ABC',
+        //                 style: new TextStyle(
+        //                     fontSize: 17, fontWeight: FontWeight.bold),
+        //               );
+        //             } else {
+        //               return Text(
+        //                 '&123',
+        //                 style: new TextStyle(
+        //                     fontSize: 17, fontWeight: FontWeight.bold),
+        //               );
+        //             }
+        //           },
+        //         ),
+        //       ),
+        //     ],
+        //   ),
+        // ),
       ],
     );
   }
 
   Widget _buildBody(List<String> labels) {
-    //
     return GridView.builder(
         shrinkWrap: true,
         itemCount: labels.length,
@@ -295,7 +296,8 @@ class _OnscreenKeyboardWidgetState extends State<OnscreenKeyboardWidget> {
               style: new TextStyle(fontSize: 25),
             ),
             onPressed: () {
-              text = text! + labels[index];
+              // text = text! + labels[index];
+              text = labels[index];
               setState(() {});
               widget.onChanged!(text);
             },
